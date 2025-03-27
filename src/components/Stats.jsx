@@ -6,10 +6,8 @@ const Stats = () => {
     const {
         user,
         stats,
-        incrementFollowers,
-        decrementFollowers,
-        incrementFollowing,
-        decrementFollowing
+        changeFollowers,
+        changeFollowing
     } = useContext(TwitterContext)
     return (
         <div className={'user-stats'}>
@@ -20,17 +18,17 @@ const Stats = () => {
 
             <div className={'stats'}>
                 <div
-                    onClick={incrementFollowers}
+                    onClick={() => changeFollowers(1)}
                     onContextMenu={(e) => {
                         e.preventDefault();
-                        decrementFollowers();
+                        changeFollowers(-1);
                     }}>Followers: {stats.followers}</div>
                 <div
 
-                    onClick={incrementFollowing}
+                    onClick={() => changeFollowing(1)}
                     onContextMenu={(e) => {
                         e.preventDefault()
-                        decrementFollowing();
+                        changeFollowing(-1);
                     }}>Following: {stats.following}</div>
             </div>
         </div>
