@@ -2,17 +2,28 @@ import React, {useContext} from 'react';
 import {TwitterContext} from "../utils/context.js";
 
 const Avatar = ({size}) => {
-    const {user,  setUser } = useContext(TwitterContext);
+    const {user,  changeAvatar, changeName  } = useContext(TwitterContext);
 
-    const changeAvatar = () => {
-        const newAvatar = prompt("Please, enter url for new avatar ");
-        if(newAvatar){
-            setUser(userData => ({...userData, avatar: newAvatar}));
-        }
-    }
+
 
     return (
-              <img className={`user-avatar ${size || ''}`} src={user.avatar} alt={user.name} onClick={changeAvatar} style={{cursor: 'pointer'}}/>
+              <img className={`user-avatar ${size || ''}`} src={user.avatar} alt={user.name}
+                   onClick={ ()=>{
+                  const url = prompt(" Enter url")
+                       changeAvatar(url); }}
+
+                   onContextMenu={ (e)=>{
+                       e.preventDefault();
+                      const name = prompt("Enter new name")
+                       changeName(name);
+                   }}
+
+
+
+
+
+
+              />
     );
 };
 
