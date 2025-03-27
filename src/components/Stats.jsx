@@ -3,7 +3,14 @@ import Avatar from "./Avatar.jsx";
 import {TwitterContext} from "../utils/context.js";
 
 const Stats = () => {
-  const {user, stats} = useContext(TwitterContext)
+    const {
+        user,
+        stats,
+        incrementFollowers,
+        decrementFollowers,
+        incrementFollowing,
+        decrementFollowing
+    } = useContext(TwitterContext)
     return (
         <div className={'user-stats'}>
             <div>
@@ -12,8 +19,19 @@ const Stats = () => {
             </div>
 
             <div className={'stats'}>
-                <div>Followers: {stats.followers}</div>
-                <div>Following: {stats.following}</div>
+                <div
+                    onClick={incrementFollowers}
+                    onContextMenu={(e) => {
+                        e.preventDefault();
+                        decrementFollowers();
+                    }}>Followers: {stats.followers}</div>
+                <div
+
+                    onClick={incrementFollowing}
+                    onContextMenu={(e) => {
+                        e.preventDefault()
+                        decrementFollowing();
+                    }}>Following: {stats.following}</div>
             </div>
         </div>
     );
