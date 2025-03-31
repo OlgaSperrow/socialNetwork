@@ -27,7 +27,7 @@ const Stats = () => {
                     onClick={() => changeStats('following', 1)}
                     onContextMenu={(e) => {
                         e.preventDefault()
-                        changeStats(-1);
+                        changeStats('following', -1);
                     }}>Following: {stats.following}</div>
             </div>
         </div>
